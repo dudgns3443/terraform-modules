@@ -10,11 +10,10 @@ variable "subnets" {
 }
 
 variable "is_public" {
-  description = "서브넷을 생성할 가용 영역(Availability Zones) 리스트"
+  description = "public/private 구분용도"
   type        = bool
   default     = false
 }
-
 
 variable "azs" {
   description = "서브넷을 생성할 가용 영역(Availability Zones) 리스트"
