@@ -1,0 +1,36 @@
+{{- if .Values.autoscaling.enabled  | default false}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  labels: 
+    app: {{ .Release.Name }}
+spec: 
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  minReadySeconds: {{ .Values.minReadySeconds }}
+  revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      affinity: 
+{{ toYaml .Values.affinity | indent 8 }}
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image.url }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.service.targetPort }}
+          protocol: TCP
+        terminationMessagePath: {{ .Values.terminationMessagePath}}
+        terminationMessagePolicy: {{ .Values.terminationMessagePolicy}}
+      dnsPolicy: {{ .Values.dnsPolicy }}
+      restartPolicy: {{  .Values.restartPolicy }}
+      schedulerName: {{  .Values.schedulerName }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds}}
+{{- end}}

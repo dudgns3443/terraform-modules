@@ -13,6 +13,7 @@ variable "namespace" {
 variable "repo_url" {
   type        = string
   description = "Helm 차트 리포지토리 URL"
+  default     = ""
 }
 
 variable "chart_name" {
@@ -23,6 +24,7 @@ variable "chart_name" {
 variable "chart_version" {
   type        = string
   description = "사용할 Helm 차트 버전"
+  default     = ""
 }
 
 variable "cluster_endpoint" {

@@ -11,7 +11,7 @@ terraform {
   }
 }
 
-data "aws_eks_cluster_auth" "cluster" {
+data "aws_eks_cluster_auth" "eks_auth" {
   name = var.cluster_name
 }
 
