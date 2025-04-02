@@ -41,3 +41,8 @@ variable "cluster_ca_certificate" {
   description = "EKS 클러스터의 CA 인증서 (BASE64 인코딩된 문자열)"
   type        = string
 }
+
+variable "values" {
+  type        = list(string)
+  description = "values"
+}

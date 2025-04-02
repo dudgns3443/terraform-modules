@@ -3,19 +3,10 @@ ingress:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     kubernetes.io/ingress.class: "nginx"
-  hosts:
-  - host: test.example.com
-    paths:
-    - path: /
-      pathType: Prefix
-      backend:
-        service:
-          name: release-name
-          port:
-            number: 80
-
+  hosts: []
+  
 autoscaling:
-  enabled: true
+  enabled: false
 
 service:
   type: ClusterIP
@@ -25,7 +16,7 @@ service:
 replicaCount: 2
 
 image:
-  url: 534420079206.dkr.ecr.ap-northeast-2.amazonaws.com/backend-app:latest
+  url: {}
   pullPolicy: IfNotPresent
   tag: latest
 
@@ -35,15 +26,7 @@ fullnameOverride: ""
 
 tolerations: []
 
-affinity:
-  nodeAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-      nodeSelectorTerms:
-        - matchExpressions:
-            - key: "subnet_type"
-              operator: In
-              values:
-                - "private"
+affinity: {}
 
 minReadySeconds: 10
 
