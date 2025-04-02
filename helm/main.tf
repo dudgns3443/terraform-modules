@@ -23,10 +23,11 @@ provider "helm" {
   }
 }
 
-resource "helm_release" "alb_ingress_controller" {
+resource "helm_release" "chart" {
   name       = var.release_name
   namespace  = var.namespace
   repository = var.repo_url
   chart      = var.chart_name
   version    = var.chart_version
+  create_namespace = true
 }
