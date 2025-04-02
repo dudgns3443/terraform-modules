@@ -6,12 +6,14 @@ terraform-modules
 vpc와 eks는 공식모듈을 사용했기에 모듈에서 제외되었습니다.
 
 modules
-
    ├── iam
    ├── route53
    ├── cloudfront
    ├── securityGroup
    ├── subnet
    ├── nodegroup
-   ├── helm-alb-ingress
-   └── helm-app
+   ├── helm
+        ├── charts                   # helm 로컬 차트 디렉토리
+        ├── main.tf
+        ├── variables.tf
+        ├── ouput.tf
