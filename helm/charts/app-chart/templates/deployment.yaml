@@ -21,7 +21,7 @@ spec:
 {{ toYaml .Values.affinity | indent 8 }}
       containers:
       - name: {{ .Release.Name }}
-        image: {{ .Values.image.url }}
+        image: "{{ .Values.image.url }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - name: http
