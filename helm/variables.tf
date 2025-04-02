@@ -45,4 +45,5 @@ variable "cluster_ca_certificate" {
 variable "values" {
   type        = list(string)
   description = "values"
+  default     = []
 }
