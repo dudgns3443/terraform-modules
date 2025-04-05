@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled  | default false }}
-{{- $fullName := include "01-conects-gong.fullname" . -}}
+{{- $fullName := include "app-deploy.fullname" . -}}
 {{- $svcPort := .Values.service.httpPort -}}
 {{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
   {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
@@ -17,7 +17,7 @@ kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    {{- include "01-conects-gong.labels" . | nindent 4 }}
+    {{- include "app-deploy.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
